@@ -10,7 +10,19 @@ const refs = {
   articlesContainer: document.querySelector('.gallery'),
 };
 
-fetchPictures('cat').then(renderCard).catch(console.log);
+refs.searchForm.addEventListener('submit', onSearch);
+
+function onSearch(e) {
+  e.preventDefault();
+
+  const form = e.currentTarget;
+  const searchQuery = form.elements.searchQuery.value;
+
+  fetchPictures(searchQuery)
+    .then(renderCard)
+    .catch(console.log)
+    .finally(() => form.reset());
+}
 
 function fetchPictures(searchValue) {
   return fetch(
