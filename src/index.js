@@ -24,10 +24,11 @@ function onSearch(e) {
     .finally(() => form.reset());
 }
 
+// fetch / запрос
 function fetchPictures(searchValue) {
-  return fetch(
-    `${BASE_URL}/?key=${KEY}&q=${searchValue}&page=1&per_page=40&image_type=photo&orientation=horizontal&safesearch=true`
-  ).then(r => {
+  const url = `${BASE_URL}/?key=${KEY}&q=${searchValue}&page=1&per_page=40&image_type=photo&orientation=horizontal&safesearch=true`;
+
+  return fetch(url).then(r => {
     if (r.ok) {
       return r.json();
     }
@@ -36,11 +37,13 @@ function fetchPictures(searchValue) {
   });
 }
 
+// processing resolve / обработка хорошего результата
 function renderCard(picture) {
   const markup = pictureCardTpl(picture.hits);
   refs.articlesContainer.innerHTML = markup;
 }
 
+// processing reject / обработка плохого результата
 function onFetchError(error) {
   console.log('Ошибка!');
 }
