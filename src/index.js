@@ -10,12 +10,15 @@ const refs = {
   articlesContainer: document.querySelector('.gallery'),
 };
 
-fetch(
-  `${BASE_URL}/?key=${KEY}&q=yellow+flowers&page=1&per_page=40&image_type=photo&orientation=horizontal&safesearch=true`
-)
-  .then(r => r.json())
-  .then(picture => {
-    const markup = pictureCardTpl(picture.hits);
-    refs.articlesContainer.innerHTML = markup;
-  })
-  .catch(error => console.log(error));
+fetchPictures('cat').then(renderCard).catch(console.log);
+
+function fetchPictures(searchValue) {
+  return fetch(
+    `${BASE_URL}/?key=${KEY}&q=${searchValue}&page=1&per_page=40&image_type=photo&orientation=horizontal&safesearch=true`
+  ).then(r => r.json());
+}
+
+function renderCard(picture) {
+  const markup = pictureCardTpl(picture.hits);
+  refs.articlesContainer.innerHTML = markup;
+}
