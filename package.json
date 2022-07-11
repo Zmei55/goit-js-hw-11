@@ -1,0 +1,32 @@
+{
+  "name": "goit-js-hw-11",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://zmei55.github.io/goit-js-hw-11",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html --public-url /goit-js-hw-11/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zmei55/goit-js-hw-11.git"
+  },
+  "keywords": [],
+  "author": "Andrei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zmei55/goit-js-hw-11/issues"
+  },
+  "parcelCleanPaths": [
+    "dist",
+    ".cache"
+  ],
+  "devDependencies": {
+    "parcel": "^2.6.2"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "notiflix": "^3.2.5"
+  },
+  "browserslist": "> 0.5%, last 3 versions, not dead"
+}
