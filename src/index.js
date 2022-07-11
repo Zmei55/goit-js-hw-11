@@ -20,17 +20,27 @@ function onSearch(e) {
 
   fetchPictures(searchQuery)
     .then(renderCard)
-    .catch(console.log)
+    .catch(onFetchError)
     .finally(() => form.reset());
 }
 
 function fetchPictures(searchValue) {
   return fetch(
     `${BASE_URL}/?key=${KEY}&q=${searchValue}&page=1&per_page=40&image_type=photo&orientation=horizontal&safesearch=true`
-  ).then(r => r.json());
+  ).then(r => {
+    if (r.ok) {
+      return r.json();
+    }
+
+    throw Error();
+  });
 }
 
 function renderCard(picture) {
   const markup = pictureCardTpl(picture.hits);
   refs.articlesContainer.innerHTML = markup;
+}
+
+function onFetchError(error) {
+  console.log('Ошибка!');
 }
