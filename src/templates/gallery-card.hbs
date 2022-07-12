@@ -1,25 +1,25 @@
 {{#each this}}
   <div class='photo-card'>
     {{!-- <a href="{{largeImageURL}}"> --}}
-      <img class="photo-card-img" src='{{webformatURL}}' alt='' loading='lazy' />
-      <ul class='info'>
-        <li class='info-item'>
-          <b>Likes</b>
-          <span>{{likes}}</span>
-        </li>
-        <li class='info-item'>
-          <b>Views</b>
-          <span>{{views}}</span>
-        </li>
-        <li class='info-item'>
-          <b>Comments</b>
-          <span>{{comments}}</span>
-        </li>
-        <li class='info-item'>
-          <b>Downloads</b>
-          <span>{{downloads}}</span>
-        </li>
-      <ul>
-    {{!-- </a> --}}
+    <img class='photo-card-img' src='{{webformatURL}}' alt='' loading='lazy' />
+    <ul class='info'>
+      <li class='info-item'>
+        <b>Likes</b>
+        <span>{{likes}}</span>
+      </li>
+      <li class='info-item'>
+        <b>Views</b>
+        <span>{{views}}</span>
+      </li>
+      <li class='info-item'>
+        <b>Comments</b>
+        <span>{{comments}}</span>
+      </li>
+      <li class='info-item'>
+        <b>Downloads</b>
+        <span>{{downloads}}</span>
+      </li>
+    </ul>
+    {{! </a> }}
   </div>
 {{/each}}
