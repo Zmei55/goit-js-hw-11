@@ -23,21 +23,23 @@ function onLoadMore() {
 function onSearch(e) {
   e.preventDefault();
 
-  newsApiService.query = e.currentTarget.elements.searchQuery.value; // записали input в класс, с пом set
+  const form = e.currentTarget;
+  newsApiService.query = form.elements.searchQuery.value; // записали input в класс, с пом set
 
   if (newsApiService.query === '') {
     return console.log('Введи что-то нормальное');
   }
 
   newsApiService.resetPage();
-  newsApiService.fetchArticles().then(pictures => {
-    clearPicturesContainer();
-    appendPicturesMarcup(pictures);
-    showLoadMoreBtn();
-  }); // вызвали поиск из класса / удалили старую разметку / нарисовали разметку
-
-  //   .catch(onFetchError)
-  //   .finally(() => form.reset());
+  newsApiService
+    .fetchArticles()
+    .then(pictures => {
+      clearPicturesContainer();
+      appendPicturesMarcup(pictures);
+      showLoadMoreBtn();
+    }) // вызвали поиск из класса / удалили старую разметку / нарисовали разметку
+    .catch(onFetchError)
+    .finally(() => form.reset());
 }
 
 // processing resolve / обработка хорошего результата
