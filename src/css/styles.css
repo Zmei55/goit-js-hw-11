@@ -86,6 +86,11 @@ img {
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
+.photo-card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
 .photo-card-img {
   width: 320px;
   height: 200px;
