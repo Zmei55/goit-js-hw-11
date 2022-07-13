@@ -33,6 +33,7 @@ function onSearch(e) {
   newsApiService.fetchArticles().then(pictures => {
     clearPicturesContainer();
     appendPicturesMarcup(pictures);
+    showLoadMoreBtn();
   }); // вызвали поиск из класса / удалили старую разметку / нарисовали разметку
 
   //   .catch(onFetchError)
@@ -42,6 +43,11 @@ function onSearch(e) {
 // processing resolve / обработка хорошего результата
 function appendPicturesMarcup(pictures) {
   refs.picturesContainer.insertAdjacentHTML('beforeend', pictureCardTpl(pictures)); // добавляем разметку не перерисовывая разметку
+}
+
+// возвращает кнопку подгрузки
+function showLoadMoreBtn() {
+  refs.loadMoreBtn.classList.remove('is-hidden');
 }
 
 // очищаем страницу перед новым поиском
