@@ -1,11 +1,7 @@
 import './css/styles.css';
 import pictureCardTpl from './templates/gallery-card.hbs';
 import NewsApiService from './js/pictures-service';
-// import 'regenerator-runtime/runtime';
-// import axios from 'axios';
-
-// const KEY = '28160645-02600786ca706ffa5b60b520e';
-// const BASE_URL = 'https://pixabay.com/api';
+import Notiflix from 'notiflix';
 
 const refs = {
   searchForm: document.querySelector('#search-form'),
@@ -29,7 +25,7 @@ function onSearch(e) {
   newsApiService.query = form.elements.searchQuery.value; // записали input в класс, с пом set
 
   if (newsApiService.query === '') {
-    return console.log('Введи что-то нормальное');
+    return Notiflix.Notify.success('Введи что-то нормальное');
   }
 
   newsApiService.resetPage();
@@ -61,5 +57,5 @@ function clearPicturesContainer() {
 
 // processing reject / обработка плохого результата
 function onFetchError(error) {
-  console.log('Ошибка!');
+  Notiflix.Notify.failure('Ошибка! 2', error);
 }
