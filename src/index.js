@@ -6,11 +6,14 @@ const BASE_URL = 'https://pixabay.com/api';
 
 const refs = {
   searchForm: document.querySelector('#search-form'),
-  loadMoreBtn: document.querySelector('button.load-more'),
+  loadMoreBtn: document.querySelector('.load-more'),
   articlesContainer: document.querySelector('.gallery'),
 };
 
 refs.searchForm.addEventListener('submit', onSearch);
+refs.loadMoreBtn.addEventListener('click', onLoadMore);
+
+function onLoadMore() {}
 
 function onSearch(e) {
   e.preventDefault();
@@ -31,6 +34,12 @@ function fetchPictures(searchValue) {
   return fetch(url).then(r => {
     if (r.ok) {
       return r.json();
+    }
+
+    if (r === '') {
+      return console.log(
+        'Sorry, there are no images matching your search query. Please try again.'
+      );
     }
 
     throw Error();
