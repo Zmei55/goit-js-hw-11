@@ -1,6 +1,8 @@
 import './css/styles.css';
 import pictureCardTpl from './templates/gallery-card.hbs';
 import NewsApiService from './js/pictures-service';
+// import 'regenerator-runtime/runtime';
+// import axios from 'axios';
 
 // const KEY = '28160645-02600786ca706ffa5b60b520e';
 // const BASE_URL = 'https://pixabay.com/api';
@@ -17,7 +19,7 @@ refs.searchForm.addEventListener('submit', onSearch);
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 function onLoadMore() {
-  newsApiService.fetchArticles().then(appendPicturesMarcup); // вызвали поиск из класса / нарисовали разметку
+  newsApiService.fetchPictures().then(appendPicturesMarcup); // вызвали поиск из класса / нарисовали разметку
 }
 
 function onSearch(e) {
@@ -32,7 +34,7 @@ function onSearch(e) {
 
   newsApiService.resetPage();
   newsApiService
-    .fetchArticles()
+    .fetchPictures()
     .then(pictures => {
       clearPicturesContainer();
       appendPicturesMarcup(pictures);
