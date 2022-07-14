@@ -11,7 +11,7 @@ export default class NewsApiService {
   }
 
   async fetchPictures() {
-    const url = `${BASE_URL}/?key=${API_KEY}&q=${this.searchQuery}&page=${this.page}&per_page=4&image_type=photo&orientation=horizontal&safesearch=true`;
+    const url = `${BASE_URL}/?key=${API_KEY}&q=${this.searchQuery}&page=${this.page}&per_page=40&image_type=photo&orientation=horizontal&safesearch=true`;
 
     try {
       const response = await axios.get(url);
