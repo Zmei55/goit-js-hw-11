@@ -2,6 +2,8 @@ import './css/styles.css';
 import pictureCardTpl from './templates/gallery-card.hbs';
 import NewsApiService from './js/pictures-service';
 import Notiflix from 'notiflix';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const refs = {
   searchForm: document.querySelector('#search-form'),
@@ -10,12 +12,14 @@ const refs = {
 };
 
 const newsApiService = new NewsApiService();
+const gallery = new SimpleLightbox('.photo-card-link');
 
 refs.searchForm.addEventListener('submit', onSearch);
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 function onLoadMore() {
   newsApiService.fetchPictures().then(appendPicturesMarcup); // вызвали поиск из класса / нарисовали разметку
+  gallery.refresh();
 }
 
 function onSearch(e) {
@@ -25,7 +29,7 @@ function onSearch(e) {
   newsApiService.query = form.elements.searchQuery.value; // записали input в класс, с пом set
 
   if (newsApiService.query === '') {
-    return Notiflix.Notify.success('Введи что-то нормальное');
+    return Notiflix.Notify.info('Введи что-то нормальное');
   }
 
   newsApiService.resetPage();
@@ -35,6 +39,7 @@ function onSearch(e) {
       clearPicturesContainer();
       appendPicturesMarcup(pictures);
       showLoadMoreBtn();
+      gallery.refresh();
     }) // вызвали поиск из класса / удалили старую разметку / нарисовали разметку
     .catch(onFetchError)
     .finally(() => form.reset());
