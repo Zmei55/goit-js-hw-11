@@ -17,11 +17,6 @@ const gallery = new SimpleLightbox('.photo-card-link');
 refs.searchForm.addEventListener('submit', onSearch);
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
-function onLoadMore() {
-  newsApiService.fetchPictures().then(appendPicturesMarcup); // вызвали поиск из класса / нарисовали разметку
-  gallery.refresh();
-}
-
 function onSearch(e) {
   e.preventDefault();
 
@@ -43,6 +38,11 @@ function onSearch(e) {
     }) // вызвали поиск из класса / удалили старую разметку / нарисовали разметку
     .catch(onFetchError)
     .finally(() => form.reset());
+}
+
+function onLoadMore() {
+  newsApiService.fetchPictures().then(appendPicturesMarcup); // вызвали поиск из класса / нарисовали разметку
+  gallery.refresh();
 }
 
 // processing resolve / обработка хорошего результата
